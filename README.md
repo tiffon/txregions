@@ -9,12 +9,12 @@ Briefly, it can:
 * Highlight URLs
 * Highlight Email addresses
 * Highlight invalid characters given a suitable definition of valid, presets include:
-** `email`
-** `url`
-** `number`
-** `number eu`
-** `int`
-** `uint`
+  * `email`
+  * `url`
+  * `number`
+  * `number eu`
+  * `int`
+  * `uint`
 * Highlight any span of text as it is entered
 
 Instances of `TxRegionsInput` can be configured to have a hidden `<input type="text" .../>` element, named whatever you want, which will always have the value entered into the `TxRegionsInput` as its value. Additionally, the `<input>`'s validity state will always reflect the current state of the `TxRegionsInput`. This way, the `TxRegionsInput` value can be submitted with a form.
@@ -43,7 +43,7 @@ This `TxRegionsInput` is considered required, has a `maxLength` of 255 character
 
 The `TxRegionsInput` above will also have a placeholder. The text of the placeholder is not selectable and would not be seen as a form value.
 
-More details are to come, but there are some tricks done that make it fairly straight-forward to implement help tips on invalid values. An except from the demo is shown below:
+More details are to come, but there are some tricks done that make it fairly straight-forward to implement help tips on invalid values. An excerpt from the demo is shown below:
 
 ```
 <TxRegionsInput
@@ -85,14 +85,14 @@ With the following css styles:
 }
 ```
 
-The help tips are toggled when the `TxRegionsInput` loses focus and are hidden when it gains focus. They will only show after the first time it has had focus. Because this behavior (the focus related part) is defined only in CSS, it can be switched to whatever you want. Similar to the `ng-pristine` etc., CSS classes from Angular, the `TxRegionsInput` has a `[data-us-state]` attribute that has one of the following from each set:
+The help tips are toggled when the `TxRegionsInput` loses focus and are hidden when it gains focus. They will only show after the first time it has had focus. Because this behavior (the focus related part) is defined only in CSS, it can be switched to whatever you want. Similar to the `ng-pristine` etc., CSS classes from Angular, the `TxRegionsInput` has a `[data-ux-state]` attribute that has one of the following from each set:
 * To indicate the focus state:
-** `focus-never`
-** `focus-now`
-** `focus-had`
+  * `focus-never`
+  * `focus-now`
+  * `focus-had`
 * To indicate if it has been modified by the user:
-** `changed-never`
-** `changed-done`
+  * `changed-never`
+  * `changed-done`
 
 So, if it has focus and has been changed at least once by the user, the wrapping div of the will be dressed with:
 ```
