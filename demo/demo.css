@@ -1,0 +1,103 @@
+html {
+    background-color: #fafafa;
+    color: #333;
+    font-family: helvetica;
+    margin: 1em;
+}
+
+.fine-print {
+    color: #999;
+}
+
+.demo-item-wrapper {
+    margin: 0.5em 0 2em 0;
+}
+
+.demo-item-editable {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    line-height: 1.4;
+    margin-top: 0.5em;
+    margin-bottom: 0.25em;
+    padding: 0.5em 0.65em 0.35em 0.65em;
+    white-space: pre-wrap;
+}
+
+.demo-item-editable:focus {
+    border-color: #66afe9;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px 1px rgb(102,175,233);
+    outline: none;
+}
+
+/* when the input is in an invalid state */
+:invalid + .demo-item-editable {
+    border-color: #c44;
+}
+
+/* the placeholder */
+.demo-item-editable::before {
+    content: attr(data-placeholder);
+    color: #999;
+}
+
+/* fade the placeholder when the contenteditable has focus */
+.demo-item-editable:focus::before {
+    color: #bbb;
+}
+
+.txr-invalid {
+    color: #c00;
+    background: linear-gradient(to top, #fee, rgba(255,238,238,0.5));
+    border-bottom: 1px solid #fcc;
+}
+
+.txr-email,
+.txr-url {
+    color: #248aab;
+}
+
+.txr-email.txr-invalid,
+.txr-url.txr-invalid {
+    color: #157da0;
+    background: linear-gradient(to top, #fdd, rgba(255,238,238,0.5));
+    border-bottom: 1px solid #faa;
+}
+
+.error-hint {
+    color: #c00;
+    font-size: 0.9em;
+    margin-top: 0.15em;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+[data-ux-state~="focus-had"][data-violations~="digits"] > [data-hint-key="digits"],
+[data-ux-state~="focus-had"][data-violations~="general"] > [data-hint-key="general"],
+[data-ux-state~="focus-had"][data-violations~="required"] > [data-hint-key="required"],
+[data-ux-state~="focus-had"][data-violations~="minLength"] > [data-hint-key="minLength"],
+[data-ux-state~="focus-had"][data-violations~="maxLength"] > [data-hint-key="maxLength"] {
+    max-height: 1.3em;
+    opacity: 1;
+}
+
+.mad-styles {
+    background: #dde4e9;
+    border: none;
+    border-bottom-left-radius: 0;
+    border-left: 5px solid #558abb;
+    border-top-left-radius: 0;
+}
+
+.mad-invalid {
+    color: #c00;
+}
+
+.demo-word-find {
+    color: #f14141;
+    background-color: #eee;
+    border-bottom: 1px solid #ddd;
+}

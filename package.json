@@ -1,0 +1,69 @@
+{
+  "name": "txregions",
+  "version": "0.0.0",
+  "description": "A React text input component with invalid character highlighting and URL, email, and number presets.",
+  "files": [
+    "*.md",
+    "docs",
+    "es6",
+    "lib",
+    "npm-scripts",
+    "umd"
+  ],
+  "main": "lib/index",
+  "jsnext:main": "es6/index",
+  "homepage": "https://github.com/tiffon/txregions",
+  "bugs": "https://github.com/tiffon/txregions/issues",
+  "scripts": {
+    "build": "npm run build-cjs && npm run build-es6",
+    "build-cjs": "rimraf lib && babel ./src -d lib --ignore '__tests__'",
+    "build-es6": "rimraf es6 && babel ./src -d es6 --blacklist=es6.modules --ignore '__tests__'",
+    "build-umd": "NODE_ENV=production webpack src/index.js umd/TxRegions.js",
+    "build-min": "NODE_ENV=production webpack -p src/index.js umd/TxRegions.min.js",
+    "lint": "eslint src demo",
+    "start": "cd demo && node server.js && cd -",
+    "test-node": "mocha --compilers js:babel-core/register tests.node.js",
+    "postinstall": "node ./npm-scripts/postinstall.js"
+  },
+  "authors": [
+    "Joe Farro"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "invariant": "^2.0.0",
+    "warning": "^2.0.0"
+  },
+  "devDependencies": {
+    "babel": "^5.4.7",
+    "babel-core": "^5.4.7",
+    "babel-eslint": "^3.1.23",
+    "babel-loader": "^5.0.0",
+    "babel-plugin-dev-expression": "^0.1.0",
+    "bundle-loader": "^0.5.2",
+    "css-loader": "^0.19.0",
+    "eslint": "^1.7.3",
+    "eslint-config-rackt": "^1.1.0",
+    "eslint-plugin-react": "^3.6.3",
+    "express": "^4.13.3",
+    "express-urlrewrite": "^1.2.0",
+    "gzip-size": "^3.0.0",
+    "isparta-loader": "^1.0.0",
+    "pretty-bytes": "^2.0.1",
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0",
+    "rimraf": "^2.4.3",
+    "style-loader": "^0.12.4",
+    "webpack": "^1.4.13",
+    "webpack-dev-middleware": "^1.2.0"
+  },
+  "tags": [
+    "react",
+    "component"
+  ],
+  "keywords": [
+    "react",
+    "react-component",
+    "input",
+    "highlight"
+  ]
+}
