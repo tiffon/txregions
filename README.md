@@ -5,16 +5,18 @@
 The `txregions` package contains the `TxRegionsInput` component that is intended to be a drop-in replacement for an `<input>` of type `text`, `email`, or `url`.
 
 Briefly, it can:
-* Highlight text that is passed the maxlength (highlight in red, presumably)
+* Highlight invalid characters (given a suitable definition of valid)
+  * Presets include:
+    * email
+    * url
+    * number
+    * number eu
+    * int
+    * uint
+  * Invalid characters can also be defined via a regular expression or a function
+* Highlight text that is past the `maxLength`
 * Highlight URLs
 * Highlight Email addresses
-* Highlight invalid characters given a suitable definition of valid, presets include:
-  * `email`
-  * `url`
-  * `number`
-  * `number eu`
-  * `int`
-  * `uint`
 * Highlight any span of text as it is entered
 
 Instances of `TxRegionsInput` can be configured to have a hidden `<input type="text" .../>` element, named whatever you want, which will always have the value entered into the `TxRegionsInput` as its value. Additionally, the `<input>`'s validity state will always reflect the current state of the `TxRegionsInput`. This way, the `TxRegionsInput` value can be submitted with a form.
@@ -47,8 +49,8 @@ More details are to come, but there are some tricks done that make it fairly str
 
 ```
 <TxRegionsInput
-    setWrapperProps={wrapperProps}
-    setEditableProps={editableProps}
+    setWrapperProps={{className: 'demo-item-wrapper'}}
+    setEditableProps={{className: 'demo-item-editable'}}
     placeholder="Enter an email address"
     input
     preset="email"
@@ -64,7 +66,6 @@ More details are to come, but there are some tricks done that make it fairly str
 
 With the following css styles:
 ```
-
 .error-hint {
     color: #c00;
     font-size: 0.9em;
@@ -103,21 +104,32 @@ That can be used as styling hooks, as shown on the demo.
 
 ## HTML structure
 
-The resulting HTML of an empty input (our email input from above, but without the validation messages) is:
+The resulting HTML from the `<TxRegionsInput>` above (but without the validation messages) is:
 
 ```
-<div class="demo-item-wrapper" data-ux-state="focus-never changed-never" data-reactid=".0.g">
-    <input hidden="" type="text" name="email_address" value="" data-reactid=".0.g.0">
-    <div data-placeholder="Enter an email address" class="demo-item-editable" spellcheck="false" contenteditable="true" data-reactid=".0.g.1"></div>
+<div
+    class="demo-item-wrapper"
+    data-ux-state="focus-never changed-never"
+    data-reactid=".0.g">
+    <input
+        hidden=""
+        type="text"
+        name="email_address"
+        value=""
+        data-reactid=".0.g.0">
+    <div
+        data-placeholder="Enter an email address"
+        class="demo-item-editable"
+        spellcheck="false"
+        contenteditable="true"
+        data-reactid=".0.g.1"></div>
 </div>
 ```
-
-### More details are a work-in-progress
 
 
 ## Just want to note:
 
-I jacked a lot of the structure of this repo from https://github.com/rackt/react-router (License: https://github.com/rackt/react-router/blob/master/LICENSE.md)
+The structure of this repo and many of the build scripts, etc., are derived from https://github.com/rackt/react-router (License: https://github.com/rackt/react-router/blob/master/LICENSE.md)
 
 The twitter-text.js code is a sub-set of the JavaScript twitter-text code at https://github.com/twitter/twitter-text/blob/master/js/twitter-text.js (License http://www.apache.org/licenses/LICENSE-2.0)
 
