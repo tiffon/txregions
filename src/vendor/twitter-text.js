@@ -203,7 +203,11 @@ http://www.apache.org/licenses/LICENSE-2.0
 
   twttr.txt.regexen.validPortNumber = regexSupplant(/[0-9]+/);
 
-  twttr.txt.regexen.cyrillicLettersAndMarks = regexSupplant("\u0400-\u04FF");
+  // NOTE: To resolve an issue with an invalid RegExp error when transpiling
+  // with babel and webpack, the string in the following commented out line is
+  // replaced with a String created via `String.fromCharCode(...)`.
+  // twttr.txt.regexen.cyrillicLettersAndMarks = regexSupplant("\u0400-\u04ff");
+  twttr.txt.regexen.cyrillicLettersAndMarks = regexSupplant(String.fromCharCode(1024) + "-" + String.fromCharCode(1279));
   twttr.txt.regexen.validGeneralUrlPathChars = regexSupplant(/[a-z#{cyrillicLettersAndMarks}0-9!\*';:=\+,\.\$\/%#\[\]\-_~@\|&#{latinAccentChars}]/i);
   // Allow URL paths to contain up to two nested levels of balanced parens
   //  1. Used in Wikipedia URLs like /Primer_(film)
