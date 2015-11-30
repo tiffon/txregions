@@ -27,7 +27,7 @@ module.exports = {
 
   resolve: {
     alias: {
-      'txregions': path.join(__dirname, '..', 'src')
+      'txregions': path.join(__dirname, '..', 'lib')
     }
   },
 
