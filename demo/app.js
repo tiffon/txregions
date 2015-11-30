@@ -24,7 +24,7 @@ export class App extends Component {
         this.setState({value: this._setInput ? this._setInput.value : '' });
     }
 
-    handleSubstringBlur(event) {
+    handleUpdateDynamicMarker(event) {
         var rx;
         event.preventDefault();
         console.log(this._substringInput);
@@ -143,7 +143,7 @@ export class App extends Component {
                 </TxRegionsInput>
 
                 Mark sub-strings <small className="fine-print">(valid regexes only)</small> &nbsp;
-                <form style={{display: 'inline'}} onSubmit={this.handleSubstringBlur.bind(this)}>
+                <form style={{display: 'inline'}} onSubmit={this.handleUpdateDynamicMarker.bind(this)}>
                     <code>/<input
                         ref={elm => this._substringInput = elm}
                         type="text"
