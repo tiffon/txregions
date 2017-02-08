@@ -2,15 +2,24 @@ html {
     background-color: #fafafa;
     color: #333;
     font-family: helvetica;
-    margin: 1em;
+    margin: 7em;
 }
 
 .fine-print {
     color: #999;
 }
 
+.code-wrapper {
+    margin: 2rem;
+}
+
+.code-snippet {
+    color: #118;
+    font-family: Consolas,Menlo,Monaco,"Courier New",monospace;
+}
+
 .demo-item-wrapper {
-    margin: 0.5em 0 2em 0;
+    margin: 0.5em 0 7em 0;
 }
 
 .demo-item-editable {
@@ -21,6 +30,7 @@ html {
     line-height: 1.4;
     margin-top: 0.5em;
     margin-bottom: 0.25em;
+    max-width: 600px;
     padding: 0.5em 0.65em 0.35em 0.65em;
     white-space: pre-wrap;
 }
@@ -49,7 +59,6 @@ html {
 
 .txr-invalid {
     color: #c00;
-    background: linear-gradient(to top, #fee, rgba(255,238,238,0.5));
     border-bottom: 1px solid #fcc;
 }
 

@@ -1,6 +1,9 @@
-# TODO: A legit readme.
 
-## In the meantime
+## Demo
+
+http://jf.io/demo/txregions/
+
+## Overview
 
 The `txregions` package contains the `TxRegionsInput` component that is intended to be a drop-in replacement for an `<input>` of type `text`, `email`, or `url`.
 
