@@ -54,6 +54,7 @@ export default class TxRegionsInput extends Component {
         this._valueHistory = [initialValue];
         this._caretHistory = [0];
         this._historyPos = 0;
+        this._wrapper = undefined;
         this._elm = undefined;
         this._input = undefined;
         // for checking if the content has changed
@@ -307,6 +308,12 @@ export default class TxRegionsInput extends Component {
         this._elm.appendChild(frag);
         this._txContent = this._elm.textContent;
         this._numDescendants = this._elm.querySelectorAll('*').length;
+        // set the violations
+        if (this._violations) {
+            this._wrapper.setAttribute('data-violations', this._violations);
+        } else {
+            this._wrapper.removeAttribute('data-violations');
+        }
     }
 
 
@@ -447,7 +454,9 @@ export default class TxRegionsInput extends Component {
             p = this.props,
             clean = this.clean,
             editableProps = p.setEditableProps || {},
-            wrapperProps = p.setWrapperProps || {};
+            wrapperProps = p.setWrapperProps || {},
+            violations = this._violations ? {'data-violations': this._violations} : {};
+
 
         editableProps.contentEditable = true;
 
@@ -484,8 +493,9 @@ export default class TxRegionsInput extends Component {
         }
         return (
             <div
+                ref={elm => this._wrapper = elm}
                 {...wrapperProps}
-                data-violations={this._violations}
+                {...violations}
                 data-ux-state={uxFocus + uxChanged}
             >
                 {input}
@@ -496,6 +506,7 @@ export default class TxRegionsInput extends Component {
                     onInput={this._handleChange.bind(this)}
                     onKeyDown={this._handleKeyDown.bind(this)}
                     data-placeholder={clean ? '' : p.placeholder}
+                    spellCheck={p.spellCheck}
                     {...editableProps} />
                 {p.children}
             </div>
@@ -522,6 +533,7 @@ TxRegionsInput.propTypes = {
     setEditableProps: PropTypes.object,
     setInputProps: PropTypes.object,
     setWrapperProps: PropTypes.object,
+    spellCheck: PropTypes.bool,
     validators: validatorsPropCheck,
     value: React.PropTypes.string,
 };
@@ -531,6 +543,7 @@ TxRegionsInput.defaultProps = {
     markers: undefined,
     maxHistory: 100,
     placeholder: '',
+    spellCheck: false
 };
 
 TxRegionsInput.defaultMarkers = TxRegionsInput.defaultProps.markers;
