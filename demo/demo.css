@@ -7,13 +7,14 @@ html {
 
 .fine-print {
     color: #999;
+    font-weight: normal;
 }
 
-.code-wrapper {
+.code-block {
     margin: 2rem;
 }
 
-.code-snippet {
+.editor {
     color: #118;
     font-family: Consolas,Menlo,Monaco,"Courier New",monospace;
 }
@@ -22,7 +23,7 @@ html {
     margin: 0.5em 0 7em 0;
 }
 
-.demo-item-editable {
+.editable {
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 2px;
@@ -35,31 +36,39 @@ html {
     white-space: pre-wrap;
 }
 
-.demo-item-editable:focus {
+.violations-after-blur [data-violations] > .editable:focus,
+.editable:focus {
     border-color: #66afe9;
     box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px 1px rgb(102,175,233);
     outline: none;
 }
 
 /* when the input is in an invalid state */
-:invalid + .demo-item-editable {
+[data-violations] > .editable {
     border-color: #c44;
 }
 
 /* the placeholder */
-.demo-item-editable::before {
+.editable::before {
     content: attr(data-placeholder);
     color: #999;
 }
 
 /* fade the placeholder when the contenteditable has focus */
-.demo-item-editable:focus::before {
+.editable:focus::before {
     color: #bbb;
 }
 
+.violations-after-blur > div > [data-ux-state~="focus-had"] .txr-invalid,
 .txr-invalid {
     color: #c00;
-    border-bottom: 1px solid #fcc;
+    border-bottom: 1px solid #f66;
+}
+
+
+.violations-after-blur .txr-invalid {
+    color: initial;
+    border: none;
 }
 
 .txr-email,
@@ -105,8 +114,138 @@ html {
     color: #c00;
 }
 
-.demo-word-find {
+.rx-form,
+.set-value-form {
+    display: inline;
+}
+
+.rx-form input {
+    font-family: Consolas,Menlo,Monaco,"Courier New",monospace;
+    text-align: center;
+}
+
+.word-find {
     color: #f14141;
-    background-color: #eee;
+    background-color: #f0f0f0;
     border-bottom: 1px solid #ddd;
+}
+
+
+
+/*/ snow-light-syntax /*/
+
+.comment {
+  color: #999988;
+  font-style: italic;
+}
+.string {
+  color: #D14;
+}
+.string .source,
+.string .meta.embedded.line {
+  color: #5A5A5A;
+}
+.string .punctuation.section.embedded {
+  color: #920B2D;
+}
+.string .punctuation.section.embedded .source {
+  color: #920B2D;
+}
+.constant.numeric {
+  color: #D14;
+}
+.constant.language {
+  color: #606aa1;
+}
+.constant.character,
+.constant.other {
+  color: #606aa1;
+}
+.constant.symbol {
+  color: #990073;
+}
+.constant.numeric.line-number.find-in-files .match {
+  color: rgba(143, 190, 0, 0.63);
+}
+.variable {
+  color: #008080;
+}
+.variable.parameter {
+  color: #606aa1;
+}
+.keyword {
+  color: #222;
+  font-weight: bold;
+}
+.keyword.unit {
+  color: #445588;
+}
+.keyword.special-method {
+  color: #0086B3;
+}
+.storage {
+  color: #222;
+}
+.storage.type {
+  color: #222;
+}
+.entity.name.class {
+  /*text-decoration: underline;*/
+  color: #606aa1;
+}
+.entity.other.inherited-class {
+  text-decoration: underline;
+  color: #606aa1;
+}
+.entity.name.function {
+  color: #900;
+}
+.entity.name.tag {
+  color: #008080;
+}
+.entity.other.attribute-name {
+  color: #458;
+  font-weight: bold;
+}
+.entity.name.filename.find-in-files {
+  color: #E6DB74;
+}
+.support.constant,
+.support.function,
+.support.type {
+  color: #458;
+}
+.support.class {
+  color: #008080;
+}
+.invalid {
+  color: #F8F8F0;
+  background-color: #00A8C6;
+}
+.invalid.deprecated {
+  color: #F8F8F0;
+  background-color: #8FBE00;
+}
+.meta.structure.dictionary.json > .string.quoted.double.json,
+.meta.structure.dictionary.json > .string.quoted.double.json .punctuation.string {
+  color: #000080;
+}
+.meta.structure.dictionary.value.json > .string.quoted.double.json {
+  color: #d14;
+}
+.meta.diff,
+.meta.diff.header {
+  color: #75715E;
+}
+.css.support.property-name {
+  font-weight: bold;
+  color: #333;
+}
+.css.constant {
+  color: #099;
+}
+.bracket-matcher {
+  background-color: #C9C9C9;
+  opacity: .7;
+  border-bottom: 0 none;
 }
