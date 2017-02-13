@@ -8,18 +8,27 @@ import { filteredMap, makeSelectionRange, positiveNumericPropCheck } from './uti
 import { makeValidators, validatorDefaults, validatorsPropCheck } from './validators';
 
 
-const
-    getFromRxCache = (function() {
-        const cache = {};
-        function getFromRxCache(str) {
-            if (str in cache) {
-                return cache[str];
-            }
-            return cache[str] = new RegExp(str);
+const noOp = function(){};
+
+const warnFn = (console.error || console.warn || console.log || function(){}).bind(console);
+
+const getPatternValidator = (function() {
+    const cache = {};
+    function getPatternValidator(value) {
+        if (value in cache) {
+            return cache[value];
         }
-        return getFromRxCache;
-    })(),
-    noOp = function(){};
+        let rx;
+        try {
+            rx = new RegExp(value);
+        } catch (error) {
+            warnFn(`Invalid pattern regex: ${error}\n${error.stack}`);
+            return;
+        }
+        return cache[value] = makeValidators({pattern: rx});
+    }
+    return getPatternValidator;
+})();
 
 
 export const classNames = {
@@ -173,8 +182,14 @@ export default class TxRegionsInput extends Component {
                 markRange(0, clean.length, invalidClassName);
             }
         }
-        if (pattern && clean.replace(getFromRxCache(pattern), '').length > 0) {
-            value += ' pattern';
+        if (pattern) {
+            const patternValidator = getPatternValidator(pattern);
+            if (patternValidator) {
+                const patternViolation = patternValidator.exec(clean, shouldMark && markRange);
+                if (patternViolation) {
+                    value += ` ${patternViolation}`;
+                }
+            }
         }
         if (isRequired && !clean) {
             value += ' required';
