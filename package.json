@@ -1,6 +1,6 @@
 {
   "name": "txregions",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A React text input component with invalid character highlighting and URL, email, and number presets.",
   "files": [
     "*.md",
