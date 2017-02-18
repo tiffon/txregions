@@ -29,7 +29,8 @@ function getRegExp(value, options, defaultFlags) {
 
 function getClassNameFromOptions(options) {
     var fromProps,
-        fromClassNames;
+        fromClassNames,
+        fallback;
     if (typeof options === 'string') {
         return {
             className: options
@@ -37,12 +38,13 @@ function getClassNameFromOptions(options) {
     }
     fromProps = options.classNameFromProps;
     fromClassNames = options.classNameFromClassNames;
-    if (!fromProps && !fromClassNames) {
+    fallback = options.fallbackClassName;
+    if (!fromProps && !fromClassNames && !fallback) {
         return;
     }
     return {
         getClassName: function getClassName(component, classNames) {
-            return fromProps && component.props[fromProps] || classNames[fromClassNames];
+            return fromProps && component.props[fromProps] || classNames[fromClassNames] || fallback;
         }
     };
 }
