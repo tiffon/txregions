@@ -359,7 +359,6 @@ export default class TxRegionsInput extends Component {
             numDescendants = this._elm.querySelectorAll('*').length,
             hasFocus = this._elm === document.activeElement,
             caretPos = this._findSelectionOffset();
-
         // if nothing changed, ignore this callback
         if (raw === this._txContent && numDescendants === this._numDescendants) {
             return;
@@ -393,7 +392,16 @@ export default class TxRegionsInput extends Component {
 
 
     _handleKeyDown(event) {
-        if (event.metaKey && event.keyCode === KEY_CODES.Z) {
+        if (event.keyCode === KEY_CODES.ENTER) {
+            event.preventDefault();
+            if (this.props.onEnterKeyDown) {
+                const data = {
+                    metaKey: event.metaKey,
+                    shiftKey: event.shiftKey
+                };
+                this.props.onEnterKeyDown(data);
+            }
+        } else if (event.metaKey && event.keyCode === KEY_CODES.Z) {
             event.preventDefault();
             this._isUndo = true;
             if (event.shiftKey) {
@@ -533,7 +541,7 @@ const PropTypes = React.PropTypes;
 
 TxRegionsInput.propTypes = {
     defaultValue: PropTypes.string,
-    dynamicMarkers: React.PropTypes.bool,
+    dynamicMarkers: PropTypes.bool,
     input: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     invalidClassName: PropTypes.string,
     markers: PropTypes.oneOfType([PropTypes.func, PropTypes.array]),
@@ -541,8 +549,10 @@ TxRegionsInput.propTypes = {
     maxHistory: positiveNumericPropCheck,
     maxLength: positiveNumericPropCheck,
     minLength: positiveNumericPropCheck,
-    onRawChange: PropTypes.func,
+    pattern: PropTypes.string,
+    onEnterKeyDown: PropTypes.func,
     onUpdate: PropTypes.func,
+    onRawChange: PropTypes.func,
     placeholder: PropTypes.string,
     required: PropTypes.bool,
     setEditableProps: PropTypes.object,
@@ -550,7 +560,7 @@ TxRegionsInput.propTypes = {
     setWrapperProps: PropTypes.object,
     spellCheck: PropTypes.bool,
     validators: validatorsPropCheck,
-    value: React.PropTypes.string,
+    value: PropTypes.string,
 };
 
 TxRegionsInput.defaultProps = {
