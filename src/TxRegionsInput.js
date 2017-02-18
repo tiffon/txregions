@@ -397,8 +397,17 @@ export default class TxRegionsInput extends Component {
             if (this.props.onEnterKeyDown) {
                 const data = {
                     metaKey: event.metaKey,
-                    shiftKey: event.shiftKey
+                    shiftKey: event.shiftKey,
+                    clean: this.clean,
+                    component: this,
+                    isValid: !this._violations,
+                    raw: this.state.raw,
+                    violations: this._violations || undefined
                 };
+                if (this._input) {
+                    data.input = this._input;
+                    data.value = this._input.value;
+                }
                 this.props.onEnterKeyDown(data);
             }
         } else if (event.metaKey && event.keyCode === KEY_CODES.Z) {
