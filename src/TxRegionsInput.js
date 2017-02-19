@@ -176,7 +176,7 @@ export default class TxRegionsInput extends Component {
                 markRange(max, clean.length, invalidClassName);
             }
         }
-        if (min && min > 0 && min > clean.length) {
+        if (clean.length && min && min > 0 && min > clean.length) {
             value += ' minLength';
             if (shouldMark && markRange) {
                 markRange(0, clean.length, invalidClassName);
