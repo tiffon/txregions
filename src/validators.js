@@ -37,7 +37,7 @@ function propValueCheck(value) {
         return;
     }
     if (Array.isArray(value)) {
-        return filteredMap(value, verifyPropValue).join('; ');
+        return value.map(propValueCheck).filter(Boolean).join('; ');
     }
     if (typeof value !== 'object') {
         return 'Invalid value: ' + value;
@@ -49,10 +49,10 @@ function propValueCheck(value) {
         return 'The "className" property must be a string.';
     }
     return Object.keys(value).map(key => {
-        if (!(value[key] instanceof RegExp) && typeof value[key] !== 'function') {
+        if (key !== 'className' && key !== 'mark' && !(value[key] instanceof RegExp) && typeof value[key] !== 'function') {
             return `Invalid property, ${key} must be a RegExp or function.`;
         };
-    }).join('; ');
+    }).filter(Boolean).join('; ');
 }
 
 
