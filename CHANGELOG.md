@@ -1,6 +1,6 @@
 # Releases
 
-## v1.1.0 (Unreleased)
+## v1.1.0-rc.0 (May 25, 2020)
 
 
 - Add PropTypes, React 16 Support ([#2](https://github.com/tiffon/txregions/pull/2), [@richseviora](https://github.com/richseviora))
