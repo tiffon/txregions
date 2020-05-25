@@ -21,8 +21,7 @@
     "build-umd": "NODE_ENV=production webpack src/index.js umd/TxRegions.js",
     "build-min": "NODE_ENV=production webpack -p src/index.js umd/TxRegions.min.js",
     "lint": "eslint src demo",
-    "start": "cd demo && node server.js && cd -",
-    "postinstall": "node ./npm-scripts/postinstall.js"
+    "start": "cd demo && node server.js && cd -"
   },
   "authors": [
     "Joe Farro"
