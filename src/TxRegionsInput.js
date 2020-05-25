@@ -46,6 +46,12 @@ export const classNames = {
 
 export default class TxRegionsInput extends Component {
 
+    static getDerivedStateFromProps(props, state) {
+        if (!('value' in props) || state.raw === props.value) {
+            return null
+        }
+        return {raw: props.value == null ? '' : String(props.value)}
+    }
 
     constructor(props) {
         super(props);
@@ -381,8 +387,8 @@ export default class TxRegionsInput extends Component {
             this.setState({
                 hasFocus: true,
                 rawCaretPos: this._findSelectionOffset()
-            }, 0);
-        })
+            });
+        }, 0)
     }
 
 
@@ -440,13 +446,6 @@ export default class TxRegionsInput extends Component {
     }
 
 
-    componentWillReceiveProps(nextProps, nextState) {
-        if ('value' in nextProps) {
-            this.setState({raw: nextProps.value});
-        }
-    }
-
-
     shouldComponentUpdate(nextProps, nextState) {
         return (
             nextState.hasFocus !== this.state.hasFocus ||
@@ -454,11 +453,6 @@ export default class TxRegionsInput extends Component {
             nextState.rawCaretPos !== this.state.rawCaretPos ||
             !!this.props.dynamicMarkers && this.props.markers !== nextProps.markers
         );
-    }
-
-
-    componentWillUpdate(nextProps, nextState) {
-        this._updateViolations();
     }
 
 
@@ -482,6 +476,8 @@ export default class TxRegionsInput extends Component {
 
 
     render() {
+        this._updateViolations();
+
         const
             p = this.props,
             clean = this.clean,

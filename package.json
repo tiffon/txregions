@@ -22,7 +22,6 @@
     "build-min": "NODE_ENV=production webpack -p src/index.js umd/TxRegions.min.js",
     "lint": "eslint src demo",
     "start": "cd demo && node server.js && cd -",
-    "test-node": "mocha --compilers js:babel-core/register tests.node.js",
     "postinstall": "node ./npm-scripts/postinstall.js"
   },
   "authors": [
