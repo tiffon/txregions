@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 import MarkedRanges from './MarkedRanges';
 import { markEmail, markUrls } from './markers';
 import { combineValidators } from './presets';
@@ -545,8 +545,6 @@ export default class TxRegionsInput extends Component {
         );
     }
 }
-
-const PropTypes = React.PropTypes;
 
 TxRegionsInput.propTypes = {
     defaultValue: PropTypes.string,
